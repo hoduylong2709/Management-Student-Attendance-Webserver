@@ -1,0 +1,28 @@
+{
+    "name": "2-case-study",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon index.js",
+        "dev": "nodemon --inspect index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^0.19.2",
+        "body-parser": "^1.19.0",
+        "cookie-parser": "^1.4.5",
+        "express": "^4.17.1",
+        "firebase-admin": "^8.10.0",
+        "lowdb": "^1.0.0",
+        "mysql": "^2.18.1",
+        "pug": "^2.0.4",
+        "short-id": "0.1.0-1"
+    },
+    "devDependencies": {
+        "dotenv": "^8.2.0",
+        "nodemon": "^2.0.2"
+    }
+}

@@ -1,0 +1,86 @@
+extends ../layouts/common
+
+block content
+    p
+        | MÔN HỌC: LTHT&amp;VDK
+    p
+        | DANH SÁCH SINH VIÊN
+    p
+    button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModal12')
+        | Thêm sinh viên
+    #exampleModal12.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel12', aria-hidden='true')
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    h5#exampleModalLabel12.modal-title Thêm sinh viên
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') &times;
+                .modal-body
+                    form(method="POST", action="/users")
+                        .form-group
+                            label(for='exampleInputEmail112') Nhập mã sinh viên
+                            input#exampleInputEmail112.form-control(name="masv")
+                            label(for='exampleInputEmail112') Nhập tên sinh viên
+                            input#exampleInputEmail112.form-control(name="tensv")
+                            label(for='exampleInputEmail112') Nhập lớp
+                            input#exampleInputEmail112.form-control(name="lopsv")
+                        .form-group
+                            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                            button.close(type='submit') Xác nhận
+    p
+    table.table
+        tr
+            th Mã SV
+            th Tên
+            th Lớp
+            th Số buổi đi học / tổng 
+        each data in datas
+            tr
+                td= data.maSV
+                td= data.name
+                td= data.lop
+                td= data.attendanceTimes + `/` + dataKeys.length
+                td 
+                    button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModal13')
+                        | Xóa
+                    #exampleModal13.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel13', aria-hidden='true')
+                        .modal-dialog
+                            .modal-content
+                                .modal-header
+                                    h5#exampleModalLabel13.modal-title Xóa sinh viên
+                                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                        span(aria-hidden='true') &times;
+                                .modal-body
+                                    form(method="POST", action="/users/delete")
+                                        .form-group
+                                            label(for='exampleInputEmail113') Nhập mã sinh viên bạn muốn xóa để xác nhận
+                                            input#exampleInputEmail113.form-control(name="masvdelete")
+                                        .form-group
+                                            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                                            button.close(type='submit') Xác nhận
+                td 
+                    button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModal14')
+                        | Sửa
+                    #exampleModal14.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel14', aria-hidden='true')
+                        .modal-dialog
+                            .modal-content
+                                .modal-header
+                                    h5#exampleModalLabel14.modal-title Chỉnh sửa thông tin sinh viên
+                                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                        span(aria-hidden='true') &times;
+                                .modal-body
+                                    form(method="POST", action="/users/edit")
+                                        .form-group
+                                            label(for='exampleInputEmail114') Nhập mã sinh viên muốn sửa
+                                            input#exampleInputEmail114.form-control(name="masvedt")
+                                            label(for='exampleInputEmail114') Nhập lại tên sinh viên
+                                            input#exampleInputEmail114.form-control(name="tensvedt")
+                                            label(for='exampleInputEmail114') Nhập lại lớp
+                                            input#exampleInputEmail114.form-control(name="lopsvedt")
+                                        .form-group
+                                            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                                            button.close(type='submit') Xác nhận
+                    
+
+                
+    

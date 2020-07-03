@@ -1,0 +1,47 @@
+extends ../layouts/common
+
+block content
+    h1.display-4.text-center.pb-5 CHỌN NGÀY DẠY
+    ul.list-group.w-50.m-auto
+        each date in dates
+            li.list-group-item.d-flex.justify-content-center
+                a(href=`/users/${date}`)= date
+                button.btn.btn-primary.mx-sm-2(type='button', data-toggle='modal', data-target='#exampleModal', padding='unset')
+                    | Xóa
+                #exampleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+                    .modal-dialog
+                        .modal-content
+                            .modal-header
+                                h5#exampleModalLabel.modal-title Xóa ngày
+                                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                    span(aria-hidden='true') &times;
+                            .modal-body
+                                form(method="POST", action="/home/delete")
+                                    .form-group
+                                        label(for='exampleInputEmail1') Nhập ngày bạn muốn xóa để xác nhận (yyyy-mm-dd)
+                                        input#exampleInputEmail1.form-control(name="date")
+                                    .form-group
+                                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                                        button.close(type='submit') Xác nhận
+        button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModal1')
+            | Thêm ngày
+        #exampleModal1.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel1', aria-hidden='true')
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        h5#exampleModalLabel1.modal-title Nhập ngày
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                span(aria-hidden='true') &times;
+                    .modal-body
+                        form(method="POST", action="/home")
+                            .form-group
+                                label(for='exampleInputEmail11') yyyy-mm-dd
+                                input#exampleInputEmail11.form-control(name="date")
+                            .form-group
+                                button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                                button.close(type='submit') Xác nhận
+
+
+
+
+        

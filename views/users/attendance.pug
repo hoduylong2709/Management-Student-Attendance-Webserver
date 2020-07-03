@@ -1,0 +1,59 @@
+extends ../layouts/common
+
+block content
+    p
+        | MÔN HỌC: TH VĐK
+    p
+        | DANH SÁCH SINH VIÊN
+    p Nhập ngày và giờ vào học
+    form.form-inline(method="POST", action="/users/dateSelect")
+        .form-group.mx-sm-1.mb-2
+            //- label.sr-only(for='inputDate') Giờ vào học(hh:mm:ss)
+            input#inputDate1.form-control(name='dateSlect1', placeholder='yyyy-mm-dd')
+            input#inputDate.form-control(name='dateSlect', placeholder='hh:mm:ss')
+        button.btn.btn-primary.mb-2(type='submit') Xác nhận
+    table.table
+        tr
+            th Mã SV
+            th Tên
+            th Lớp
+            th Có mặt
+            th Thời gian
+            th Trạng thái
+        each data in datas
+            tr
+                td= data.maSV
+                td= data.name
+                td= data.lop
+                each dataDate in dataDates
+                    if (data.maSV === dataDate.maSV)
+                        td= 'x'
+                        td= dataDate.time
+                        td= dataDate.status
+                each absent in absents
+                    if (data.maSV === absent.maSV)
+                        td= ""
+                        td= absent.time
+                        td= absent.status
+
+    script(type='text/javascript', src='https://www.gstatic.com/charts/loader.js')
+    script(type='text/javascript').
+        google.charts.load('current', {packages: ['corechart']});
+    #container(style='width: 550px; height: 400px; margin: 0 auto')
+    script(language='JavaScript').
+        function drawChart() {
+        var a = #{datas.length - absents.length};
+        var b = #{absents.length};
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Browser');
+        data.addColumn('number', 'Percentage');
+        data.addRows([
+        ['Đi học', a],
+        ['Vắng mặt', b]
+        ]);
+        var options = {'title':'Biểu đồ số lượng sinh viên đi học / vắng mặt', 'width':550, 'height':400};
+        var chart = new google.visualization.PieChart(document.getElementById ('container'));
+        chart.draw(data, options);
+        }
+        google.charts.setOnLoadCallback(drawChart);
+                
