@@ -18,7 +18,7 @@
         "firebase-admin": "^8.10.0",
         "lowdb": "^1.0.0",
         "mysql": "^2.18.1",
-        "pug": "^2.0.4",
+        "pug": "^3.0.1",
         "short-id": "0.1.0-1"
     },
     "devDependencies": {
